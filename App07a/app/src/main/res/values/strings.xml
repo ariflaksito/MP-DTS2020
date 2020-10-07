@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">App07a</string>
+    <string name="app_name">InputName App</string>
 
     <string name="label_hello">Hello world</string>
     <string name="hint_nama">Fullname</string>

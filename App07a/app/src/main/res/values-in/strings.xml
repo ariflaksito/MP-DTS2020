@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Aplikasi Inputnama</string>
+
     <string name="label_hello">Hello world</string>
     <string name="hint_nama">Nama lengkap</string>
     <string name="btn_tampil">Tampilkan</string>

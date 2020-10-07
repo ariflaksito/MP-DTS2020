@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_all"
+    android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/buttonBuatFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_create" />
+
+    <Button
+        android:id="@+id/buttonUbahFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_edit" />
+
+    <Button
+        android:id="@+id/buttonBacaFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_read" />
+
+    <Button
+        android:id="@+id/buttonHapusFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_delete" />
+
+    <TextView
+        android:id="@+id/textBaca"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/hight_area"
+        android:background="@android:color/darker_gray"
+        android:ems="10"
+        android:gravity="top|left"
+        android:padding="@dimen/padding_5"
+        android:textColorHint="#000"
+        android:hint="@string/label_result"
+        android:inputType="textMultiLine" />
+
+</LinearLayout>

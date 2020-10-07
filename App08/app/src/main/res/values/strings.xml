@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">App08</string>
+    <string name="title_main">Latihan persistence</string>
+    <string name="title_in_storage">Internal Storage</string>
+    <string name="title_ex_storage">External Storage</string>
+    <string name="label_result">Hasil baca file</string>
+
+    <string name="btn_create">Buat File</string>
+    <string name="btn_edit">Ubah File</string>
+    <string name="btn_read">Baca File</string>
+    <string name="btn_delete">Hapus File</string>
+
+
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_all">15dp</dimen>
+    <dimen name="padding_5">5dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_normal">16sp</dimen>
+    <dimen name="text_head">23sp</dimen>
+    <dimen name="text_big">27sp</dimen>
+    <dimen name="hight_area">200dp</dimen>
+</resources>
