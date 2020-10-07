@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">App07a</string>
+
+    <string name="label_hello">Hello world</string>
+    <string name="hint_nama">Fullname</string>
+    <string name="btn_tampil">Show</string>
+</resources>

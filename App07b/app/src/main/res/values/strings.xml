@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">App07b</string>
+    <string name="app_title">Masukan bilangan yang akan diproses</string>
+    <string name="hint_bil1">Bilangan 1</string>
+    <string name="hint_bil2">Bilangan 2</string>
+    <string name="label_result">Hasil</string>
+    <string name="val_result">0</string>
+
+    <string name="btn_jml">+</string>
+    <string name="btn_kurang">-</string>
+    <string name="btn_kali">*</string>
+    <string name="btn_bagi">/</string>
+
+    <string name="btn_clear">Bersihkan</string>
+</resources>

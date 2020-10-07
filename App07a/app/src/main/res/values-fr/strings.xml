@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_hello">Hello world</string>
+    <string name="hint_nama">Nom complet</string>
+    <string name="btn_tampil">Spectacle</string>
+</resources>
