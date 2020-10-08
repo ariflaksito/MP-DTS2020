@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">App07c</string>
     <string name="label_country">List of Country</string>
+    <string name="label_main">Penggunaan Listview</string>
+    <string name="btn_simple">Simple Listview</string>
+    <string name="btn_custom">Custom Listview</string>
+
 
 </resources>
