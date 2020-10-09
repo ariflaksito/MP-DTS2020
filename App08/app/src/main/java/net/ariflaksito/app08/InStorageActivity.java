@@ -40,7 +40,7 @@ public class InStorageActivity extends AppCompatActivity implements View.OnClick
     }
 
     void buatFile() {
-        String isiFile = "Coba Isi Data File Text";
+        String isiFile = "Hello world!";
         File file = new File(getFilesDir(), FILENAME);
 
         FileOutputStream outputStream = null;
@@ -56,7 +56,7 @@ public class InStorageActivity extends AppCompatActivity implements View.OnClick
     }
 
     void ubahFile() {
-        String ubah = "Update Isi Data File Text";
+        String ubah = "Update Hello Android";
 
         File file = new File(getFilesDir(), FILENAME);
 
@@ -73,8 +73,8 @@ public class InStorageActivity extends AppCompatActivity implements View.OnClick
     }
 
     void bacaFile() {
-        File sdcard = getFilesDir();
-        File file = new File(sdcard, FILENAME);
+        File storage = getFilesDir();
+        File file = new File(storage, FILENAME);
 
         if(file.exists()) {
 
