@@ -33,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 db.addStudent(inName.getText().toString());
                 inName.setText("");
-                Toast.makeText(MainActivity.this, "Input name success", Toast.LENGTH_SHORT).show();
+
+                String info = getResources().getString(R.string.info_success_add_student);
+                Toast.makeText(MainActivity.this, info, Toast.LENGTH_SHORT).show();
             }
         });
 
