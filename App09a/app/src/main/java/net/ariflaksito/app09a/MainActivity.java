@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
-import android.app.Application;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -14,7 +13,6 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -34,8 +32,12 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     ListView lvFile;
-    static final int REQUEST_CODE_STORAGE = 100;
+    static final int WRITE_CODE_STORAGE = 100;
+    static final int READ_CODE_STORAGE = 200;
+
     static final String LOG_TAG = "Log Activity";
+    static final String KEY_MAPNAME = "name";
+    static final String INTENT_MAPNAME = "key_name";
     FloatingActionButton fab;
 
     @Override
@@ -47,7 +49,12 @@ public class MainActivity extends AppCompatActivity {
         lvFile.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(LOG_TAG, "Click :" + parent.getAdapter().getItem(position));
+                Map<String, Object> item = (Map<String, Object>) parent.getAdapter().getItem(position);
+
+                Intent intent = new Intent(MainActivity.this, EditNoteActivity.class);
+                intent.putExtra(INTENT_MAPNAME, item.get(KEY_MAPNAME).toString());
+                startActivity(intent);
+
             }
         });
 
@@ -55,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddFileActivity.class);
+                Intent intent = new Intent(MainActivity.this, AddNoteActivity.class);
                 startActivity(intent);
             }
         });
@@ -65,18 +72,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (Build.VERSION.SDK_INT >= 23) {
-            if (checkStoragePermission())
+            if (checkWritePermission() && checkReadPermission())
                 getListFiles();
         } else
             getListFiles();
     }
 
-    private boolean checkStoragePermission() {
+    private boolean checkWritePermission() {
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
                 return true;
             else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_STORAGE);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_CODE_STORAGE);
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+
+    private boolean checkReadPermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+                return true;
+            else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, READ_CODE_STORAGE);
                 return false;
             }
         } else {
@@ -87,10 +107,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE_STORAGE) {
+        if (requestCode == WRITE_CODE_STORAGE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getListFiles();
             }
+        }else if(requestCode == READ_CODE_STORAGE){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) { }
         }
     }
 
@@ -103,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         if (!dir.exists()) {
 
             dir.mkdirs();
-            final String FILENAME = "Default.txt";
+            final String FILENAME = "Default";
             File dataFile = new File(path, FILENAME);
 
             if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -114,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 FileOutputStream mOutput = new FileOutputStream(dataFile, false);
-                String data = "DATA";
+                String data = "Data text";
                 mOutput.write(data.getBytes());
                 mOutput.close();
             } catch (FileNotFoundException e) {

@@ -1,4 +1,16 @@
 <resources>
-    <string name="app_name">App09a</string>
+    <string name="app_name">Note App</string>
     <string name="media_unavailable">External storage is not available</string>
+    <string name="info_save_success">Save note success</string>
+    <string name="info_del_success">Delete note success</string>
+
+    <string name="notif_del">Are you sure?</string>
+    <string name="label_del_yes">Yes</string>
+    <string name="label_del_no">No</string>
+
+    <string name="label_filename">Filename</string>
+    <string name="label_content">Text</string>
+
+    <string name="btn_save">Save</string>
+    <string name="btn_delete">Delete</string>
 </resources>
