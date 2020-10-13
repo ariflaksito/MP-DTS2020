@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">App11</string>
     <string name="loading_info">Please  Wait ...</string>
+    <string name="loading_post">Post  Data ...</string>
+
+    <string name="hint_name">Fullname</string>
+    <string name="hint_dept">Department</string>
+    <string name="hint_sly">Salary</string>
+
+    <string name="btn_add">Add</string>
 </resources>

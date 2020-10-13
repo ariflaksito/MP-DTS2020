@@ -1,20 +1,24 @@
 package net.ariflaksito.app11;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.os.BuildCompat;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,10 +32,11 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     ListView lv;
-    private String apiPath = "http://192.168.0.102:8080/tampilsemuapgw.php";
+    private String apiPath = "http://192.168.0.103:8080/tampilsemuapgw.php";
     private ProgressDialog processDialog;
     private JSONArray rsJsonArray;
     private int success = 0;
+    FloatingActionButton fabAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         lv = findViewById(R.id.listview);
+        new ApiGetData(this).execute();
+
+        fabAdd = findViewById(R.id.buttonAdd);
+        fabAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddDataActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
         new ApiGetData(this).execute();
     }
 
@@ -91,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (success == 1) {
                 if (null != rsJsonArray) {
-                    ArrayList<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
+                    final ArrayList<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
                     for (int i = 0; i < rsJsonArray.length(); i++) {
                         try {
                             JSONObject jsonObject = rsJsonArray.getJSONObject(i);
@@ -111,8 +131,18 @@ public class MainActivity extends AppCompatActivity {
                     SimpleAdapter adapter = new SimpleAdapter(mContext, dataList, android.R.layout.simple_list_item_2,
                             new String[]{"name", "dept"}, new int[]{android.R.id.text1, android.R.id.text2});
                     lv.setAdapter(adapter);
+
+                    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Map<String, Object> item = dataList.get(position);
+                            Log.d("LOG_TAG", "Click Id: " + item.get("id"));
+                            Log.d("LOG_TAG", "Click Name: " + item.get("name"));
+                        }
+                    });
                 }
             }
         }
     }
+
 }
