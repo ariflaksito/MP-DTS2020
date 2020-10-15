@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">App12</string>
+    <string name="marker_name">Tugu Jogja</string>
+    <string name="btn_loc">Set location</string>
+    <string name="btn_line">Draw line</string>
+    <string name="error_location_provider">Set enable GPS and Network</string>
+</resources>
