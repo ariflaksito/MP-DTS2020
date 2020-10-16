@@ -58,7 +58,7 @@ public class AddDataActivity extends AppCompatActivity {
 
     }
 
-    class ApiPostData extends AsyncTask<Void, Void, Void>{
+    private class ApiPostData extends AsyncTask<Void, Void, Void>{
 
         private Context mContext;
         String responseString = "";

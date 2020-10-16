@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         new ApiGetData(this).execute();
     }
 
-    class ApiGetData extends AsyncTask<Void, Void, Void>{
+    private class ApiGetData extends AsyncTask<Void, Void, Void>{
 
         private Context mContext;
         String responseString = "";
@@ -136,8 +136,9 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Map<String, Object> item = dataList.get(position);
-                            Log.d("LOG_TAG", "Click Id: " + item.get("id"));
-                            Log.d("LOG_TAG", "Click Name: " + item.get("name"));
+                            Intent intent = new Intent(MainActivity.this, EditDataActivity.class);
+                            intent.putExtra("ext_id", item.get("id")+"");
+                            startActivity(intent);
                         }
                     });
                 }
